@@ -1,7 +1,22 @@
 #! /usr/bin/env python3
 
 def board_init():
-    return [3, 5, 7]
+    default_board = [3, 5, 7]
+    board = []
+    use_default = input("Use default board [3, 5, 7]? (y/n): ").strip().lower()
+    if use_default == 'y':
+        return default_board
+    else:
+        rows = int(input("Enter number of rows: "))
+        for row in range(1, rows + 1):
+            if row < rows + 1:
+                print(f"Enter sticks for row {row}: ")
+                sticks = int(input())
+                board.append(sticks)
+                if sticks < 1:
+                    print("You must have at least one stick in each row.")
+                    return board_init()
+        return board
 
 def update_board(board, row, count):
     if 0 <= row < len(board) and 1 <= count <= board[row]:
@@ -16,7 +31,7 @@ def player_move(board, player):
     print(f"\n{player}'s turn:")
     while row_turn:
         try:
-            row = int(input("Choose a row (1-3): ")) - 1
+            row = int(input(f"Choose a row (1-{len(board)}): ")) - 1
             if row < 0 or row >= len(board):
                 print("\nHey, pick a real row!")
             else:
