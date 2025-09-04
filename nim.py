@@ -20,7 +20,6 @@ def board_init():
 
 def update_board(board, row, count):
     if 0 <= row < len(board) and 1 <= count <= board[row]:
-        board[row] -= count
         return True
     return False
 
