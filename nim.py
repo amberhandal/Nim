@@ -34,6 +34,8 @@ def player_move(board, player):
             row = int(input(f"Choose a row (1-{len(board)}): ")) - 1
             if row < 0 or row >= len(board):
                 print("\nHey, pick a real row!")
+            elif board[row] == 0:
+                print("\nThat row is empty! Pick another.\n")
             else:
                 row_turn = False
         except ValueError:
@@ -69,7 +71,7 @@ def nim(board):
         turn = 1 - turn 
         
 def main():
-    print("NIM")
+    print("------NIM------")
     board = board_init()
     nim(board)
 
